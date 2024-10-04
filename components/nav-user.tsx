@@ -31,7 +31,7 @@ export function NavUser({ user }: { user: KindeUser<any> }) {
               className="animate-in fade-in-50 zoom-in-90"
             />
             <AvatarFallback className="rounded-md">
-              {user.username?.slice(0, 2).toUpperCase()}
+              {user.given_name?.slice(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <div className="grid flex-1 leading-none">
@@ -59,7 +59,7 @@ export function NavUser({ user }: { user: KindeUser<any> }) {
                 alt={String(user.username)}
               />
               <AvatarFallback>
-                {user.username?.slice(0, 2).toUpperCase()}
+                {user.given_name?.slice(0, 2).toUpperCase()}
               </AvatarFallback>
             </Avatar>
             <div className="grid flex-1">
