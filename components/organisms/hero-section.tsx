@@ -1,6 +1,9 @@
+"use client";
+
 // import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/atoms/button";
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 
 export function HeroSection() {
   return (
@@ -17,9 +20,12 @@ export function HeroSection() {
 
         <nav className="hidden md:flex md:justify-end md:space-x-4">
           {/* <ThemeToggle /> */}
-          <Button variant="secondary">Sign in</Button>
-
-          <Button>Sign up</Button>
+          <LoginLink>
+            <Button variant="secondary">Sign in</Button>
+          </LoginLink>
+          <RegisterLink>
+            <Button>Sign up</Button>
+          </RegisterLink>
         </nav>
       </div>
 
@@ -40,9 +46,12 @@ export function HeroSection() {
               for you to create a blog in minutes
             </p>
             <div className="flex items-center gap-x-5 w-full justify-center mt-5 ">
-              <Button variant="secondary">Sign in</Button>
-
-              <Button>Try for free</Button>
+              <LoginLink>
+                <Button variant="secondary">Sign in</Button>
+              </LoginLink>
+              <RegisterLink>
+                <Button>Try for free</Button>
+              </RegisterLink>
             </div>
           </div>
         </div>
