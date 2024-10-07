@@ -19,7 +19,7 @@ import {
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs";
 
-export function NavUser({ user }: { user: KindeUser<any> }) {
+export function AppSidebarUser({ user }: { user: KindeUser<any> }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="w-full rounded-md outline-none ring-ring hover:bg-accent focus-visible:ring-2 data-[state=open]:bg-accent">

@@ -1,16 +1,5 @@
-"use client";
-
-import Link from "next/link";
-import { ChevronRight, Search, type LucideIcon } from "lucide-react";
-
 import { useIsMobile } from "@/hooks/use-mobile";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/atoms/button";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/atoms/collapsible";
+
 import {
   Drawer,
   DrawerContent,
@@ -23,82 +12,43 @@ import {
   PopoverTrigger,
 } from "@/components/atoms/popover";
 import { Separator } from "@/components/atoms/separator";
+import { Search } from "lucide-react";
+import Link from "next/link";
 
-export function NavMain({
-  className,
-  items,
-  searchResults,
-}: {
-  items: {
-    title: string;
-    url: string;
-    icon: LucideIcon;
-    isActive?: boolean;
-    items?: {
-      title: string;
-      url: string;
-    }[];
-  }[];
-  searchResults: React.ComponentProps<typeof SidebarSearch>["results"];
-} & React.ComponentProps<"ul">) {
-  return (
-    <ul className={cn("grid gap-0.5", className)}>
-      <li>
-        <SidebarSearch results={searchResults} />
-      </li>
-      {items.map((item) => (
-        <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
-          <li>
-            <div className="relative flex items-center">
-              <Link
-                href={item.url}
-                className="min-w-8 flex h-8 flex-1 items-center gap-2 overflow-hidden rounded-md px-1.5 text-sm font-medium outline-none ring-ring transition-all hover:bg-accent hover:text-accent-foreground focus-visible:ring-2"
-              >
-                <item.icon className="h-4 w-4 shrink-0" />
-                <div className="flex flex-1 overflow-hidden">
-                  <div className="line-clamp-1 pr-6">{item.title}</div>
-                </div>
-              </Link>
-              <CollapsibleTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="absolute right-1 h-6 w-6 rounded-md p-0 ring-ring transition-all focus-visible:ring-2 data-[state=open]:rotate-90"
-                >
-                  <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                  <span className="sr-only">Toggle</span>
-                </Button>
-              </CollapsibleTrigger>
-            </div>
-            <CollapsibleContent className="px-4 py-0.5">
-              <ul className="grid border-l px-2">
-                {item.items?.map((subItem) => (
-                  <li key={subItem.title}>
-                    <Link
-                      href={subItem.url}
-                      className="min-w-8 flex h-8 items-center gap-2 overflow-hidden rounded-md px-2 text-sm font-medium text-muted-foreground ring-ring transition-all hover:bg-accent hover:text-accent-foreground focus-visible:ring-2"
-                    >
-                      <div className="line-clamp-1">{subItem.title}</div>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </CollapsibleContent>
-          </li>
-        </Collapsible>
-      ))}
-    </ul>
-  );
-}
+const results = [
+  {
+    title: "Routing Fundamentals",
+    teaser:
+      "The skeleton of every application is routing. This page will introduce you to the fundamental concepts of routing for the web and how to handle routing in Next.js.",
+    url: "#",
+  },
+  {
+    title: "Layouts and Templates",
+    teaser:
+      "The special files layout.js and template.js allow you to create UI that is shared between routes. This page will guide you through how and when to use these special files.",
+    url: "#",
+  },
+  {
+    title: "Data Fetching, Caching, and Revalidating",
+    teaser:
+      "Data fetching is a core part of any application. This page goes through how you can fetch, cache, and revalidate data in React and Next.js.",
+    url: "#",
+  },
+  {
+    title: "Server and Client Composition Patterns",
+    teaser:
+      "When building React applications, you will need to consider what parts of your application should be rendered on the server or the client. ",
+    url: "#",
+  },
+  {
+    title: "Server Actions and Mutations",
+    teaser:
+      "Server Actions are asynchronous functions that are executed on the server. They can be used in Server and Client Components to handle form submissions and data mutations in Next.js applications.",
+    url: "#",
+  },
+];
 
-function SidebarSearch({
-  results,
-}: {
-  results: {
-    title: string;
-    teaser: string;
-    url: string;
-  }[];
-}) {
+export default function AppSidebarSearch() {
   const isMobile = useIsMobile();
 
   if (isMobile) {
